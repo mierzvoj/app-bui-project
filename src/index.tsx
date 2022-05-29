@@ -7,6 +7,7 @@ import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import Pokemons from "./pages/Pokemons/Pokemons";
 import PokemonsToolbar from "./pages/PokemonsToolbar/PokemonsToolbar";
+import TransitForm from "./pages/TransitForm/TransitForm";
 import UserForm from "./pages/UserForm/UserForm";
 
 const root = ReactDOM.createRoot(
@@ -18,6 +19,7 @@ root.render(
       <Routes>
         <Route path="/" element={<Login />}></Route>
         <Route path="/userform" element={<UserForm />}></Route>
+        <Route path="/transitform" element={<TransitForm />}></Route>
         <Route path="/calculation" element={<Calculation />}></Route>
         <Route path="pokemons" element={<Pokemons />}>
           <Route path=":name" element={<PokemonsToolbar />}></Route>

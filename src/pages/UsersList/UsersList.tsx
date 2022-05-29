@@ -17,7 +17,7 @@ const UsersList = ({ users }: { users: UserData[] }) => {
             <TableCell className="header">Name</TableCell>
             <TableCell className="header">Surname</TableCell>
             <TableCell className="header">City</TableCell>
-            <TableCell className="header">Gender</TableCell>
+            <TableCell className="header">Role</TableCell>
             <TableCell className="header">Active</TableCell>
             <TableCell className="header">Login</TableCell>
             <TableCell className="header">Password</TableCell>
@@ -31,7 +31,7 @@ const UsersList = ({ users }: { users: UserData[] }) => {
               </TableCell>
               <TableCell>{row.surname}</TableCell>
               <TableCell>{row.city}</TableCell>
-              <TableCell>{row.gender}</TableCell>
+              <TableCell>{row.role}</TableCell>
               <TableCell>{row.active ? "Active" : "Inactive"}</TableCell>
               <TableCell>{row.email}</TableCell>
               <TableCell>{row.password}</TableCell>

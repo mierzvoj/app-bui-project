@@ -17,13 +17,15 @@ import { UserData } from "../../model/user-data.model";
 import UsersList from "../UsersList/UsersList";
 import "./UserForm.css";
 
-const cities: string[] = ["Gdańsk", "Gdynia", "Sopot", "Warszawa", "Zakopane"];
+const cities: string[] = ["Gdańsk", "Gdynia", "Sopot"];
 
 export default function UserForm() {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [city, setCity] = useState("");
-  const [gender, setGender] = useState<"female" | "male" | undefined>("female");
+  const [role, setRole] = useState<"driver" | "passenger" | undefined>(
+    "passenger"
+  );
   const [active, setActive] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +40,7 @@ export default function UserForm() {
     event.preventDefault();
     setUsers([
       ...users,
-      { name, surname, city, gender, active, email, password },
+      { name, surname, city, role, active, email, password },
     ]);
     setOpen(true);
   };
@@ -57,7 +59,7 @@ export default function UserForm() {
     setName("");
     setSurname("");
     setCity("");
-    setGender("female");
+    setRole("passenger");
     setActive(true);
     setEmail("");
     setPassword("");
@@ -113,24 +115,24 @@ export default function UserForm() {
                 ))}
               </Select>
             </FormControl>
-            <FormControl id="gender">
-              <FormLabel>Gender</FormLabel>
+            <FormControl id="role">
+              <FormLabel>Role</FormLabel>
               <RadioGroup
-                defaultValue={gender}
-                value={gender}
+                defaultValue={role}
+                value={role}
                 onChange={(e) =>
-                  setGender(e.target.value as "female" | "male" | undefined)
+                  setRole(e.target.value as "driver" | "passenger" | undefined)
                 }
               >
                 <FormControlLabel
-                  value="female"
+                  value="driver"
                   control={<Radio />}
-                  label="Female"
+                  label="Driver"
                 />
                 <FormControlLabel
-                  value="male"
+                  value="passenger"
                   control={<Radio />}
-                  label="Male"
+                  label="Passenger"
                 />
               </RadioGroup>
             </FormControl>
