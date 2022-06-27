@@ -2,14 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
-import Calculation from "./pages/Calculations/Calculation/Calculation";
 import Header from "./pages/Common/Layout/Header";
 import Login from "./pages/Common/Login/Login";
 import NotFound from "./pages/Common/NotFound/NotFound";
-import Drawing from "./pages/Drawing/Drawing";
 import LocationsForm from "./pages/Locations/LocationsForm/LocationsForm";
-import Pokemons from "./pages/Pokemons/Pokemons";
-import PokemonsToolbar from "./pages/Pokemons/PokemonsToolbar/PokemonsToolbar";
 import TransitForm from "./pages/TransitForm/TransitForm";
 import UserForm from "./pages/Users/UserForm/UserForm";
 import Users from "./pages/Users/Users";
@@ -40,11 +36,7 @@ root.render(
             element={<LocationsForm />}
           ></Route>
         </Route>
-        <Route path="/calculation" element={<Calculation />}></Route>
-        <Route path="pokemons" element={<Pokemons />}>
-          <Route path=":name" element={<PokemonsToolbar />}></Route>
-        </Route>
-        <Route path="drawing" element={<Drawing />}></Route>
+
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter>

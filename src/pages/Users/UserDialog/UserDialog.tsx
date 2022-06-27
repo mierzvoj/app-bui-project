@@ -42,7 +42,9 @@ export default function UserDialog({
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"User's hobbies"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          {"Add passengers for this driver"}
+        </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description"></DialogContentText>
           <form>
