@@ -4,8 +4,8 @@ import { Outlet } from "react-router-dom";
 import { PokemonData } from "../../model/pokemon-data.model";
 import { CaughtPokemonsHelper } from "../../tools/caught-pokemon.helper";
 import { WishlistPokemonsHelper } from "../../tools/wish-list.helper";
-import PokemonTable from "../PokemonTable/PokemonTable";
 import "./Pokemons.css";
+import PokemonTable from "./PokemonTable/PokemonTable";
 
 export interface PokemonsState {
   loading: boolean;

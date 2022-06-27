@@ -6,4 +6,5 @@ export interface UserData {
   active?: boolean;
   email?: string;
   password?: string;
+  passengers?: string[];
 }

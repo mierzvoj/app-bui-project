@@ -11,30 +11,38 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { TransitData } from "../../model/transit-data.model";
-import TransitList from "../TransitsList/TransitList";
-import "./TransitForm.css";
+import { useNavigate, useParams } from "react-router-dom";
+import { LocationData } from "../../../model/location-data.model";
+import LocationsList from "../LocationsList/LocationsList";
+import "./LocationsForm.css";
 
 const cities: string[] = ["Gdańsk", "Gdynia", "Sopot"];
-export default function TransitForm() {
-  const [name, setName] = useState("");
-  const [addressFrom, setAddressFrom] = useState("");
-  const [addressTo, setAddressTo] = useState("");
+export default function LocationsForm() {
+  const [locations, setLocations] = useState<LocationData[]>([]);
+  const params = useParams();
+  const index = ((params.index ?? -1) as number) ?? -1;
+  // const locations = locations[index] ?? {};
+  const [street, setStreet] = useState("");
+  const [streetNo, setStreetNo] = useState(0);
   const [city, setCity] = useState("");
-  const [transitGroupId, setTransitGroupId] = useState("");
   const [open, setOpen] = useState(false);
-  const [transits, setTransits] = useState<TransitData[]>([]);
+
+  const navigate = useNavigate();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setTransits([
-      ...transits,
-      { name, addressFrom, addressTo, city, transitGroupId },
-    ]);
+    setLocations([...locations, { street, streetNo, city }]);
     setOpen(true);
   };
   const validateForm = () => {
-    return name.length > 0 && city.length > 0;
+    return street.length > 0 && city.length > 0;
+  };
+  const handleApply = () => {
+    setOpen(true);
+    const copy = [...locations];
+    copy[index] = { street, streetNo, city };
+    setLocations(copy);
+    navigate("/locations/list");
   };
   const handleClose = (
     event: React.SyntheticEvent | Event,
@@ -45,13 +53,20 @@ export default function TransitForm() {
     }
     setOpen(false);
   };
-  const handleReset = () => {
-    setName("");
-    setAddressFrom("");
-    setAddressTo("");
-    setCity("");
-    setTransitGroupId("");
+  const handleAdd = () => {
+    setOpen(true);
+    setLocations([...locations, { street, streetNo, city }]);
+    navigate("/locations/list");
   };
+  const handleReset = () => {
+    setStreet("");
+    setStreetNo(0);
+    setCity("");
+  };
+  const handleCancel = () => {
+    navigate("/locations/list");
+  };
+
   const action = (
     <React.Fragment>
       <IconButton
@@ -66,35 +81,26 @@ export default function TransitForm() {
   );
   return (
     <>
-      <div className="Location">
+      <div className="Locations">
         <form onSubmit={(e: FormEvent<HTMLFormElement>) => handleSubmit(e)}>
           <FormGroup id="formgroup">
-            <FormLabel>Name</FormLabel>
-            <FormControl id="name">
+            <FormLabel>Street</FormLabel>
+            <FormControl id="street">
               <TextField
                 autoFocus
-                value={name}
+                value={street}
                 onChange={(
                   e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-                ) => setName(e.target.value)}
+                ) => setStreet(e.target.value)}
               />
             </FormControl>
-            <FormLabel>Address From</FormLabel>
-            <FormControl id="addressFrom">
+            <FormLabel>streetNo</FormLabel>
+            <FormControl id="streetNo">
               <TextField
-                value={addressFrom}
+                value={streetNo}
                 onChange={(
                   e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-                ) => setAddressFrom(e.target.value)}
-              />
-            </FormControl>
-            <FormLabel>Address To</FormLabel>
-            <FormControl id="addressTo">
-              <TextField
-                value={addressTo}
-                onChange={(
-                  e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-                ) => setAddressTo(e.target.value)}
+                ) => setStreetNo(parseInt(e.target.value))}
               />
             </FormControl>
             <FormLabel>City</FormLabel>
@@ -111,21 +117,24 @@ export default function TransitForm() {
               </Select>
             </FormControl>
           </FormGroup>
-          <FormLabel>Group Id</FormLabel>
-          <FormControl id="groupId">
-            <TextField
-              value={transitGroupId}
-              onChange={(
-                e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-              ) => setTransitGroupId(e.target.value)}
-            />
-          </FormControl>
-          <Button type="submit" color="primary" disabled={!validateForm()}>
+          <Button
+            color="primary"
+            disabled={!validateForm()}
+            onClick={handleApply}
+          >
             Apply
+          </Button>
+          <Button
+            color="primary"
+            disabled={!validateForm()}
+            onClick={handleAdd}
+          >
+            Add new
           </Button>
           <Button color="secondary" onClick={handleReset}>
             Reset
           </Button>
+          <Button onClick={handleCancel}>Cancel</Button>
         </form>
         <Snackbar
           open={open}
@@ -135,7 +144,7 @@ export default function TransitForm() {
           action={action}
         />
       </div>
-      <TransitList transits={transits} />
+      <LocationsList locations={locations} />
     </>
   );
 }

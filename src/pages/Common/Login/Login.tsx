@@ -30,7 +30,7 @@ export default function Login() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (email === "test@test" && password === "test") {
-      navigate("/userform");
+      navigate("/users/list");
     } else {
       setOpen(true);
     }

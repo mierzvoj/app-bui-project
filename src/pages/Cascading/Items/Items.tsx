@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import items from "../../../Items";
 import Item from "../Item/Item";
 import ViewNumber from "../ViewNumber/ViewNumber";
-import items from "../../Items";
 
 const Items = () => {
   const [numbers, setNumbers] = useState(

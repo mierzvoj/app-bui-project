@@ -9,8 +9,8 @@ import {
   TableRow,
 } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
-import { PokemonItem } from "../../model/pokemon-item.model";
-import { IPokemonContext, PokemonContext } from "../Pokemons/Pokemons";
+import { PokemonItem } from "../../../model/pokemon-item.model";
+import { IPokemonContext, PokemonContext } from "../Pokemons";
 import "./PokemonTable.css";
 
 const PokemonTable = ({ pokemons }: { pokemons: PokemonItem[] }) => {
