@@ -8,18 +8,6 @@ import TableRow from "@mui/material/TableRow";
 import { LocationData } from "../../../model/location-data.model";
 import "./LocationsList.css";
 
-// const LocationsList = () => {
-//   const navigate = useNavigate();
-//   const [open, setOpen] = React.useState(false);
-//   const [locations, setLocations] = React.useState<string[]>([]);
-//   const [rowIndex, setRowIndex] = React.useState<number>(-1);
-
-// const handleClick = (
-//   event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
-//   index: number
-// ) => {
-//   navigate("/locations/location/" + index);
-// };
 const LocationsList = ({ locations }: { locations: LocationData[] }) => {
   return (
     <TableContainer component={Paper}>
