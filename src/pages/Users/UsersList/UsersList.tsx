@@ -84,7 +84,7 @@ const UsersList = () => {
                 <TableRow
                   key={index}
                   onClick={(event) =>
-                    handleRowClick(event, index, .users)
+                    handleRowClick(event, index, context.users)
                   }
                   onDoubleClick={(event) => handleRowDoubleClick(event, index)}
                 >
