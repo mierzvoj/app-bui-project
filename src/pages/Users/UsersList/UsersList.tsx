@@ -76,7 +76,7 @@ const UsersList = () => {
                 <TableCell className="header">
                   List of potential passengers
                 </TableCell>
-                <TableCell className="header">Add passengers</TableCell>
+                <TableCell className="header">Add </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
