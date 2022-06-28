@@ -80,7 +80,7 @@ const UsersList = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {context.users.map((row, index) => (
+              {context.users.map((row) => (
                 <TableRow
                   key={index}
                   onClick={(event) =>
